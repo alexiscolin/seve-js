@@ -115,6 +115,7 @@ Here are the list of methods made for App instance: those methods rules over all
 | `destroy` | Destroy app system and all related components (not modules that should be removed manualy) | - `scope` : *(HTMLElement - optional)* - destroy all components from a specific DOM part or global if not specified.                                      |
 
 <br>
+
 ## Components Methods
 The following methods are describe the functions you can use inside the components. They are made for simplify sharing data or create link between components. they let you call for a method from another component, subscribe to a modification triggered in another (from a pubsub inner broker). They also simplify DOM event creation by managing calling, updating and destroying of their callbacks.
 | Methods       | Description                                                                                                                                           | Arguments / return                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -130,6 +131,7 @@ The following methods are describe the functions you can use inside the componen
 | `destroy`     | Default destroy method that is automatically called as component destroy                                                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 <br>
+
 ## Modules Methods
 
 Modules are directly instanciated in the component an are very coupled to them. They aim to split a very long component in many sub-modules. Their lifecycle should be managed manually. Also, they are not accessible from the App instance, so they can use components methods by calling them from the getComponent method bellow.
@@ -139,6 +141,7 @@ Modules are directly instanciated in the component an are very coupled to them. 
 | `getComponent` | Method that retrieve a component from the component list | - `comp` : *(string)* - Name of the component you want retrieve. eg "Scroller"<br> - `id` : *(string - optional)* - The id of the component you want. If not set, the first entry will be returned. eg "Main". <br><br> `return` - The component. |
 
 <br>
+
 <!-- ROADMAP -->
 ## Roadmap
 
