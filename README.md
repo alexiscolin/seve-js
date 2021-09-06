@@ -37,8 +37,6 @@ List all your components in a specific file
 export {Header} from './components/header';
 export {Navigation} from './components/navigation';
 export {Slider} from './components/slider';
-export {Scrollbar} from './components/scrollbar';
-export {Cursor} from './components/cursor';
 ...
 ```
 Create your app related to your components
@@ -52,7 +50,7 @@ app.init(app)
 ...
 ```
 
-Finaly, fill your components
+Finaly, fill and export your components
 ``` javascript
 import { Component } from 'sevejs';
 const Navigation = class extends Component {
@@ -79,6 +77,9 @@ const Navigation = class extends Component {
     destroy () {
         ...
     }
+}
+
+export { Navigation };
 ```
 
 ## Components Methods
