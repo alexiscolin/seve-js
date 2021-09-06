@@ -37,7 +37,7 @@ const App = class {
   init(app, scope) {
     // 1- lister tous les components sur la page
     // 2- si un components existe en js, enregistrer le components dans la liste des actifs
-    // 3- give an access to all component to each of them
+    // 3- partager des accdès entre les composants
     // 4- initialiser les components -> A REPLACER EN DEHORS DE LA 1ER LOOP APRES RECUP ALL COMPONENTS DEDANS
 
     // add global app in components
@@ -120,7 +120,7 @@ const App = class {
   update(scope) {
     // 1- refaire un init avec les components du new scope
     // 2- init les components de la nouvelle page
-    // 3- refraichir la liste des components à l'interieur des components actifs (acien (hors scope) et nouveau)
+    // 3- refraichir la liste des components à l'interieur des components actifs (ancien (hors scope) et nouveau)
 
     // init new scoped components
     this.init(this.app, scope);

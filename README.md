@@ -108,11 +108,12 @@ export { Navigation };
 ## App Methods
 Here are the list of methods made for App instance: those methods rules over all the components that are grouped in its inner map. They should be used for app lifecycle purpose in the routing control system of the app (eg related to BarbaJS or other dispatcher).
 
-| Methods   | Description                                                                                | Arguments                                                                                                                                        |
-|-----------|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `init`    | Init app component system                                                                  | - `app` : *(string)* - the app instance itself (recursive).<br> - `scope` : *(HTMLElement - optional)* - scope that will be parsed for composent checking |
-| `update`  | Update app component system                                                                | - `scope` : *(HTMLElement)* - scope that will be parsed in update                                                                                         |
-| `destroy` | Destroy app system and all related components (not modules that should be removed manualy) | - `scope` : *(HTMLElement - optional)* - destroy all components from a specific DOM part or global if not specified.                                      |
+| Methods           | Description                                                                                | Arguments                                                                                                                                              |
+|-------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `init`            | Init app component system                                                                  | - `app` : *(string)* - the app instance itself (recursive).  - `scope` : *(HTMLElement - optional)* - scope that will be parsed for composent checking |
+| `update`          | Update app component system                                                                | - `scope` : *(HTMLElement)* - scope that will be parsed in update                                                                                      |
+| `windowSizeInfos` | Getter function that returns window inner width and height                                 | `return` : *(object)* - return an object composed by window height and width                                                                           |
+| `destroy`         | Destroy app system and all related components (not modules that should be removed manualy) | - `scope` : *(HTMLElement - optional)* - destroy all components from a specific DOM part or global if not specified.                                   |
 
 <br>
 
