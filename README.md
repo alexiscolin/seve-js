@@ -54,6 +54,7 @@ app.init(app)
 
 Finaly, fill your components
 ``` javascript
+import { Component } from 'sevejs';
 const Navigation = class extends Component {
     constructor(opts) {
         super(opts);
@@ -62,6 +63,7 @@ const Navigation = class extends Component {
         const {el} = this.DOM;
         this.events = {};
         this.mq;
+        ...
     }
 
     init(opts) {
@@ -71,6 +73,7 @@ const Navigation = class extends Component {
     
     resize (size, mq) {
         this.mq = mq; // update current mediaquery span
+        ...
     }
     
     destroy () {
