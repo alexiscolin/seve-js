@@ -1,6 +1,24 @@
-# seve-js
+# 🌳 seve-js
 Simple and light JS components manager
 
+<!-- GETTING STARTED -->
+## Getting Started
+
+Made as an `App` class, initialize the component to use it. It will start components init phase.
+All components are extended from a `Component` class and initialized when they are encontred in the DOM.
+In addition to components, seve-js let you use `modules` that can be linked to components even if they are not instanciate from the DOM.
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/alexiscolin/seve-js.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+   
 ## Usage
 
 Basic usage :
@@ -32,6 +50,32 @@ import * as components from './js/components';
 const app = new App({components});
 app.init(app)
 ...
+```
+
+Finaly, fill your components
+``` javascript
+const Navigation = class extends Component {
+    constructor(opts) {
+        super(opts);
+        
+        // GENERAL
+        const {el} = this.DOM;
+        this.events = {};
+        this.mq;
+    }
+
+    init(opts) {
+        this.mq = opts.mq;
+        ...
+    }
+    
+    resize (size, mq) {
+        this.mq = mq; // update current mediaquery span
+    }
+    
+    destroy () {
+        ...
+    }
 ```
 
 ## Components Methods
