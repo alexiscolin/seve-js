@@ -1,12 +1,34 @@
 # 🌳 seve-js
 Simple and light JS components manager
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+### Built With
+
+* [JS ES6/7/8](https://www.ecma-international.org/technical-committees/tc39/)
+* [Babel](https://babeljs.io/)
+* [Webpack](https://webpack.js.org/)
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
 Made as an `App` class, initialize the component to use it. It will start components init phase.
 All components are extended from a `Component` class and initialized when they are encontred in the DOM.
 In addition to components, seve-js let you use `modules` that can be linked to components even if they are not instanciate from the DOM.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm i sevejs@latest
+  ```
+
+* yarn
+  ```sh
+  yarn add sevejs
+  ```
 
 ### Installation
 
@@ -85,6 +107,8 @@ export { Navigation };
 ```
 
 ## App Methods
+Here are the list of methods made for App instance: those methods rules over all the components that are grouped in its inner map. They should be used for app lifecycle purpose in the routing controle system of the app (eg related to BarbaJS or other dispatcher).
+
 | Methods   | Description                                                                                | Arguments                                                                                                                                        |
 |-----------|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `init`    | Init app component system                                                                  | - `app` : *(string)* - the app instance itself (recursive).<br> - `scope` : *(HTMLElement - optional)* - scope that will be parsed for composent checking |
@@ -92,6 +116,7 @@ export { Navigation };
 | `destroy` | Destroy app system and all related components (not modules that should be removed manualy) | - `scope` : *(HTMLElement - optional)* - destroy all components from a specific DOM part or global if not specified.                                      |
 
 ## Components Methods
+The following methods are describe the functions you can use inside the components. They are made for simplify sharing data or create link between components. they let you call for a method from another component, subscribe to a modification triggered in another (from a pubsub inner broker). They also simplify DOM event creation by managing calling, updating and destroying of their callbacks.
 | Methods       | Description                                                                                                                                           | Arguments / return                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `call`        | To call a method from another component.                                                                                                              | - `func` : *(string)* - method name that should be called. eg "openNav"<br> - `args` : *(array)* - array composed by the list of arguments needed by the func. eg ["homepage", true]<br> - `comp` : *(string)* - component name that will be called (becarefull of the uppercase if needed). eg "Navigation"<br> - `id` : *(string - optional)* - id of the component if there are multiple instances and it's not the first one. eg "Main"                         |
@@ -105,6 +130,40 @@ export { Navigation };
 | `destroy`     | Default destroy method that is automatically called as component destroy                                                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ## Modules Methods
+
+Modules are directly instanciated in the component an are very coupled to them. They aim to split a very long component in many sub-modules. Their lifecycle should be managed manually. Also, they are not accessible from the App instance, so they can use components methods by calling them from the getComponent method bellow.
+
 | Methods        | Description                                              | Arguments / return                                                                                                                                                                                                                                  |
 |----------------|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `getComponent` | Method that retrieve a component from the component list | - `comp` : *(string)* - Name of the component you want retrieve. eg "Scroller"<br> - `id` : *(string - optional)* - The id of the component you want. If not set, the first entry will be returned. eg "Main". <br><br> `return` - The component. |
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See [LICENCE FILE](https://github.com/alexiscolin/seve-js/blob/master/LICENSE) for more information.
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Alexis Colin - [linkedin](https://www.linkedin.com/in/alexiscolin/) - alexis@jaunebleu.co
+
+Project Link: [https://github.com/alexiscolin/seve-js](https://github.com/alexiscolin/seve-js)
+
+
