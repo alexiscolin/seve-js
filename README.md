@@ -42,7 +42,7 @@ export {Slider} from './components/slider';
 Create your app related to your components
 ``` javascript
 // app.js -> export here all your components
-import {App} from 'sevejs';
+import { App } from 'sevejs';
 import * as components from './js/components';
 
 const app = new App({components});
@@ -52,20 +52,21 @@ app.init(app)
 
 Finaly, fill and export your components
 ``` javascript
+// navigation.js -> here is a nav component
 import { Component } from 'sevejs';
 const Navigation = class extends Component {
     constructor(opts) {
-        super(opts);
+        super(opts); // "opts" arg from constructor to super is a mandatory to share components across the app
         
         // GENERAL
-        const {el} = this.DOM;
-        this.events = {};
-        this.mq;
+        const {el} = this.DOM; // DOM component element
+        this.events = {}; // map of binded events
+        this.mq; // mediaquery span
         ...
     }
 
     init(opts) {
-        this.mq = opts.mq;
+        this.mq = opts.mq; // set the mediaquery
         ...
     }
     
@@ -75,12 +76,20 @@ const Navigation = class extends Component {
     }
     
     destroy () {
+        // destroy here all vars, related modules/packages or events
         ...
     }
 }
 
 export { Navigation };
 ```
+
+## App Methods
+| Methods   | Description                                                                                | Arguments                                                                                                                                        |
+|-----------|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `init`    | Init app component system                                                                  | - `app` : *(string)* - the app instance itself (recursive).<br> - `scope` : *(HTMLElement - optional)* - scope that will be parsed for composent checking |
+| `update`  | Update app component system                                                                | - `scope` : *(HTMLElement)* - scope that will be parsed in update                                                                                         |
+| `destroy` | Destroy app system and all related components (not modules that should be removed manualy) | - `scope` : *(HTMLElement - optional)* - destroy all components from a specific DOM part or global if not specified.                                      |
 
 ## Components Methods
 | Methods       | Description                                                                                                                                           | Arguments / return                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -98,4 +107,4 @@ export { Navigation };
 ## Modules Methods
 | Methods        | Description                                              | Arguments / return                                                                                                                                                                                                                                  |
 |----------------|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `getComponent` | Method that retrieve a component from the component list | - `comp` : *(string)* - Name of the component you want retrieve. eg "Scroller"<br> - `id` : *(string - optional)* - The id of the component you want. If not set, the first entry will be returned. eg "Main". <br><br> - `return` - The component. |
+| `getComponent` | Method that retrieve a component from the component list | - `comp` : *(string)* - Name of the component you want retrieve. eg "Scroller"<br> - `id` : *(string - optional)* - The id of the component you want. If not set, the first entry will be returned. eg "Main". <br><br> `return` - The component. |
