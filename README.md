@@ -106,7 +106,7 @@ export { Navigation };
 ```
 
 ## App Methods
-Here are the list of methods made for App instance: those methods rules over all the components that are grouped in its inner map. They should be used for app lifecycle purpose in the routing controle system of the app (eg related to BarbaJS or other dispatcher).
+Here are the list of methods made for App instance: those methods rules over all the components that are grouped in its inner map. They should be used for app lifecycle purpose in the routing control system of the app (eg related to BarbaJS or other dispatcher).
 
 | Methods   | Description                                                                                | Arguments                                                                                                                                        |
 |-----------|--------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -134,7 +134,7 @@ The following methods describe the functions you can use inside the components. 
 
 ## Modules Methods
 
-Modules are directly instanciated in the component an are very coupled to them. They aim to split a very long component in many sub-modules. Their lifecycle should be managed manually. Also, they are not accessible from the App instance, so they can use components methods by calling them from the getComponent method bellow.
+Modules are directly instanciated in the component an are very coupled to them. They aim to split a very long component in many sub-modules. Their lifecycle should be managed manually. Also, they are not accessible from the App instance, so they can use components methods by calling them from the `getComponent` method bellow.
 
 | Methods        | Description                                              | Arguments / return                                                                                                                                                                                                                                  |
 |----------------|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
