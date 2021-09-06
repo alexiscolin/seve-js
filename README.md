@@ -92,7 +92,7 @@ const Navigation = class extends Component {
     }
     
     resize (size) {
-        // automatically called at resize event
+        // automatically called at start
         ...
     }
     
@@ -113,6 +113,7 @@ Here are the list of methods made for App instance: those methods rules over all
 | `init`    | Init app component system                                                                  | - `app` : *(string)* - the app instance itself (recursive).<br> - `scope` : *(HTMLElement - optional)* - scope that will be parsed for composent checking |
 | `update`  | Update app component system                                                                | - `scope` : *(HTMLElement)* - scope that will be parsed in update                                                                                         |
 | `destroy` | Destroy app system and all related components (not modules that should be removed manualy) | - `scope` : *(HTMLElement - optional)* - destroy all components from a specific DOM part or global if not specified.                                      |
+
 <br>
 ## Components Methods
 The following methods are describe the functions you can use inside the components. They are made for simplify sharing data or create link between components. they let you call for a method from another component, subscribe to a modification triggered in another (from a pubsub inner broker). They also simplify DOM event creation by managing calling, updating and destroying of their callbacks.
@@ -127,6 +128,7 @@ The following methods are describe the functions you can use inside the componen
 | `init`        | Default init method (init at construction). Should be use to constructor replacement when init component                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `resize`      | Default resize method (init at construction). Should be use to constructor replacement when resize component                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `destroy`     | Default destroy method that is automatically called as component destroy                                                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+
 <br>
 ## Modules Methods
 
