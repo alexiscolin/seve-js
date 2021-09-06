@@ -1,5 +1,5 @@
 # 🌳 seve-js
-Simple and light JS components manager
+Simple and light JS components manager. Made for creative JamStack websites, it helps you to manage the components lifecycle across the app and facilitate communucation between them. perfect to work in a component style in addition to a router as BarbaJS.
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -83,17 +83,16 @@ const Navigation = class extends Component {
         // GENERAL
         const {el} = this.DOM; // DOM component element
         this.events = {}; // map of binded events
-        this.mq; // mediaquery span
         ...
     }
 
-    init(opts) {
-        this.mq = opts.mq; // set the mediaquery
+    init() {
+        // automatically called at start
         ...
     }
     
-    resize (size, mq) {
-        this.mq = mq; // update current mediaquery span
+    resize (size) {
+        // automatically called at resize event
         ...
     }
     
@@ -138,6 +137,17 @@ Modules are directly instanciated in the component an are very coupled to them. 
 | `getComponent` | Method that retrieve a component from the component list | - `comp` : *(string)* - Name of the component you want retrieve. eg "Scroller"<br> - `id` : *(string - optional)* - The id of the component you want. If not set, the first entry will be returned. eg "Main". <br><br> `return` - The component. |
 
 
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Add examples folder
+- [ ] Generate jsdoc 
+- [ ] Add subpub methods as static class functions
+
+
+<!-- Websites using smooth-scrollr-->
+## Who is Using
+- [jaunebleu.co](https://jaunebleu.co/)
 
 <!-- CONTRIBUTING -->
 ## Contributing
