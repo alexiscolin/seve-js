@@ -1,6 +1,6 @@
 {
     "name": "sevejs",
-    "version": "0.1",
+    "version": "0.1.0",
     "description": "🌳 Simple and light JS components manager",
     "main": "./dist/sevejs.umd.js",
     "scripts": {
