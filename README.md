@@ -44,7 +44,7 @@ export {Cursor} from './components/cursor';
 Create your app related to your components
 ``` javascript
 // app.js -> export here all your components
-import App from 'sevejs';
+import {App} from 'sevejs';
 import * as components from './js/components';
 
 const app = new App({components});
