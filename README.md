@@ -1,6 +1,39 @@
 # seve-js
 Simple and light JS components manager
 
+## Usage
+
+Basic usage :
+
+Add a component directly in your html
+```html
+<nav class="..." data-component="navigation" data-component-id="main">
+    ...
+</nav>
+```
+_Note: data-component-id is optional but recommended to target a very specific component (if muliple instances loaded)._
+
+List all your components in a specific file
+``` javascript
+// components.js -> export here all your components
+export {Header} from './components/header';
+export {Navigation} from './components/navigation';
+export {Slider} from './components/slider';
+export {Scrollbar} from './components/scrollbar';
+export {Cursor} from './components/cursor';
+...
+```
+Create your app related to your components
+``` javascript
+// app.js -> export here all your components
+import App from 'sevejs';
+import * as components from './js/components';
+
+const app = new App({components});
+app.init(app)
+...
+```
+
 ## Components Methods
 | Methods       | Description                                                                                                                                           | Arguments / return                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
