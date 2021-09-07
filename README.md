@@ -159,7 +159,7 @@ Here is an exemple of what you can do to host your JamStack website folders with
   |- loader.js // Barba router (exemple)
   |- scroller.js
   |- 3D
-    |- index.js // here is your component that import listed modules bellow
+    |- index.js // here is your component that imports listed following modules
     |- background-module.js
     |- animation-module.js
     |- [other-module].js
