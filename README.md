@@ -149,7 +149,7 @@ Modules are directly instanciated in the component an are very coupled to them. 
 Here is an exemple of what you can do to host your JamStack website folders with seve.js:
 
 ```bash
-- index.js // import sevejs & components.js file here
+- index.js // import sevejs and components.js file here
 - components.js // exports all components bellow
 - components // folder that contains all components
   |- navigation.js
@@ -189,7 +189,7 @@ this.call('toggleNav', [2, true], 'Header', 'second');
 this.call('disapear', 'Cursor'); 
 ```
 
-#### SubPub between component
+#### SubPub between components
 ```javascript
 // - SCROLLER COMPONENT
 
@@ -214,7 +214,8 @@ this.unsubscribe('scroll', this.animation); // revoke listener from the broker.
 #### Module creation
 
 ```javascript
-// SLIDER COMPONENT FILE
+// - SLIDER COMPONENT FILE
+
 import {Component} from 'sevejs';
 import SliderProgressBar from './slider-progressbar';
 
@@ -236,7 +237,8 @@ const Slider = class extends Component {
 ```
 
 ```javascript
-// SLIDER-PROGRESBAR MODULE FILE
+// - SLIDER-PROGRESBAR MODULE FILE
+
 import {Module} from 'sevejs';
 
 export default class extends Module {
