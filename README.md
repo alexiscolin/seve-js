@@ -76,6 +76,7 @@ Finaly, fill and export your components
 ``` javascript
 // navigation.js -> here is a nav component
 import { Component } from 'sevejs';
+
 const Navigation = class extends Component {
     constructor(opts) {
         super(opts); // "opts" arg from constructor to super is a mandatory to share components across the app
@@ -135,7 +136,7 @@ The following methods describe the functions you can use inside the components. 
 
 ## Modules Methods
 
-Modules are directly instanciated in the component an are very coupled to them. They aim to split a very long component in many sub-modules. Their lifecycle should be managed manually. Also, they are not accessible from the App instance, so they can use components methods by calling them from the `getComponent` method bellow.
+Modules are directly instanciated in the component and are very coupled to them. They aim to split a very long component in many sub-modules. Their lifecycle should be managed manually. Also, they are not accessible from the App instance, so they can use components methods by calling them from the `getComponent` method bellow.
 
 | Methods        | Description                                              | Arguments / return                                                                                                                                                                                                                                  |
 |----------------|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
