@@ -123,7 +123,7 @@ The following methods describe the functions you can use inside the components. 
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `call`        | To call a method from another component.                                                                                                              | - `func` : *(string)* - method name that should be called. eg "openNav"<br> - `args` : *(array)* - array composed by the list of arguments needed by the func. eg ["homepage", true]<br> - `comp` : *(string)* - component name that will be called (becarefull of the uppercase if needed). eg "Navigation"<br> - `id` : *(string - optional)* - id of the component if there are multiple instances and it's not the first one. eg "Main"                         |
 | `on`          | To create and save a DOM event (click, focus, scroll...) in order to facilitate its lifecycle across the component. All of them are remove at destroy | `event` : *(object)* - composed -> <br> - `event.e` - *(string)* event that is listened. eg "click"<br> - `event.target` - *(HTMLElement)* DOM element that must be targeted by the event. eg document<br> - `event.cb` - *(requestCallback)* callback function triggered at event (work well with binded function)<br> - `event.opts` - *(object)* options allowed in addEventListener method <br><br> `return` : return the event id in order to easily remove it |
-| `off`         | To remove an event saved thanks to the `on` method.                                                                                                   | - `id` : *(number)* - id of the event to remove (returned by `on` method)<br> - `event` : *(object - optional)* - event that should be removed<br> - `byIndex` : *(boolean - optional / default false)* - Is the id param a _compEvents index (seve-js internal event)                                                                                                                                                                                              |
+| `off`         | To remove an event saved thanks to the `on` method.                                                                                                   | - `id` : *(number)* - id of the event to remove (returned by `on` method)<br> - `event` : *(object - optional)* - event that should be removed<br> - `byIndex` : *(boolean - optional / default false)* - Is the id param a _compEvents index ? (seve-js internal event)                                                                                                                                                                                              |
 | `trigger`     | To publish an internal JS event (event emiter - pubsub pattern)                                                                                       | - `name`: *(string)* - function name you want to trigger. Then, every events having subscribed to that function will be fired. eg "scroll"<br> - `args`: *(args)* - list of arguments you want to share with subscribed functions. eg `5, "up"`                                                                                                                                                                                                                     |
 | `subscribe`   | To subscribe / listen an internal event from the events bus (event emiter - pubsub pattern)                                                           | - `name`: *(string)* - function name you want to listen. eg "scroll"<br> - `func`: *(requestCallback)* - callback function that will be fired each time the listened event will be triggered. eg (scrollLevel, dir) => {...}                                                                                                                                                                                                                                        |
 | `unsubscribe` | To unsubscribe the listener previously subscribed (event emiter - pubsub pattern)                                                                     | - `name`: *(string)* - function name you want to unsubscribe. eg "scroll"<br> - `func`: *(requestCallback)* - the call back function to remove. eg (scrollLevel, dir) => {...}                                                                                                                                                                                                                                                                                          |
@@ -142,6 +142,115 @@ Modules are directly instanciated in the component an are very coupled to them. 
 | `getComponent` | Method that retrieve a component from the component list | - `comp` : *(string)* - Name of the component you want retrieve. eg "Scroller"<br> - `id` : *(string - optional)* - The id of the component you want. If not set, the first entry will be returned. eg "Main". <br><br> `return` - The component. |
 
 <br>
+
+
+### Exemples :
+#### folders architecture
+Here is an exemple of what you can do to host your JamStack website folders with seve.js:
+
+```bash
+- index.js // import sevejs & components.js file here
+- components.js // exports all components bellow
+- components // folder that contains all components
+  |- navigation.js
+  |- header.js
+  |- slider.js
+  |- loader.js // Barba router (exemple)
+  |- scroller.js
+  |- 3D
+    |- index.js // here is your component that import listed modules bellow
+    |- background-module.js
+    |- animation-module.js
+    |- [other-module].js
+  |- [other-component].js
+...
+```
+
+#### Create a DOM event and remove it.
+```javascript
+// `this.events` is an object made for listing all your DOM events in order to removing them easier later
+const opts = {
+    e: 'click', // listen for click event
+    target: document.querySelector('.js-burger'), // on burger element
+    cb: this._openMenu.bind(this), // and add this openMenu callback function (binded)
+}
+this.events.clickOnBurger = this.on(opts); // addEventListener
+
+// Note that all events are automatically removed when the component is destroyed, but you can destoy them manually.
+this.off(this.events.clickOnBurger, 'click');
+```
+
+#### Call a method from another component
+```javascript
+// Ask to Header component (the second one) to open/close the nav using its public method `toggleNav`. Data in brackets are the toggleNav arguments.
+this.call('toggleNav', [2, true], 'Header', 'second'); 
+
+// It works well without id if there are only one component (one Cursor here), or no arguments
+this.call('disapear', 'Cursor'); 
+```
+
+#### SubPub between component
+```javascript
+// - SCROLLER COMPONENT
+
+// add an event for scroll and then, inform the broker that a scroll happened. would be clever to throttle it.
+const cb = e => {
+    this.trigger('scroll', e); // publish event 
+};
+
+this.events.scroll = this.on({e: 'scroll',  target: window, cb: callback.bind(this)}); // see `on` exemple above
+```
+
+```javascript
+// - FOO COMPONENT
+
+// animation function will be fired each time `scroll` event is published
+this.subscribe('scroll', this.animation); // action at scroll -> `animation` method
+
+// later
+this.unsubscribe('scroll', this.animation); // revoke listener from the broker.
+```
+
+#### Module creation
+
+```javascript
+// SLIDER COMPONENT FILE
+import {Component} from 'sevejs';
+import SliderProgressBar from './slider-progressbar';
+
+const Slider = class extends Component {
+    constructor (opts) {
+        super(opts);
+        ...
+    }
+
+    init () {
+        // give all components to the module
+        this.ProgressBar = new SliderProgressBar(this.components); // this.components is automatically created by seve.js
+        ...
+    }
+
+    ...
+
+}
+```
+
+```javascript
+// SLIDER-PROGRESBAR MODULE FILE
+import {Module} from 'sevejs';
+
+export default class extends Module {
+    constructor(opts) {
+        super(opts);
+         // get component and all thoses methods. Usefull to get parent the component.
+        this.canvas = this.getComponent("Slider");
+    }
+
+    method1 () {}
+    method2 () {}
+    ...
+}
+```
 
 <!-- ROADMAP -->
 ## Roadmap
