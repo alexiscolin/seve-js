@@ -56,9 +56,9 @@ _Note: data-component-id is optional but recommended to target a very specific c
 List all your components in a specific file
 ``` javascript
 // components.js -> export here all your components
-export {Header} from './components/header';
-export {Navigation} from './components/navigation';
-export {Slider} from './components/slider';
+export { Header } from './components/header';
+export { Navigation } from './components/navigation';
+export { Slider } from './components/slider';
 ...
 ```
 Create your app related to your components
@@ -67,7 +67,7 @@ Create your app related to your components
 import { App } from 'sevejs';
 import * as components from './js/components';
 
-const app = new App({components});
+const app = new App({ components });
 app.init(app)
 ...
 ```
@@ -217,7 +217,7 @@ this.unsubscribe('scroll', this.animation); // revoke listener from the broker.
 ```javascript
 // - SLIDER COMPONENT FILE
 
-import {Component} from 'sevejs';
+import { Component } from 'sevejs';
 import SliderProgressBar from './slider-progressbar';
 
 const Slider = class extends Component {
@@ -240,7 +240,7 @@ const Slider = class extends Component {
 ```javascript
 // - SLIDER-PROGRESBAR MODULE FILE
 
-import {Module} from 'sevejs';
+import { Module } from 'sevejs';
 
 export default class extends Module {
     constructor(opts) {

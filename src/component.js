@@ -170,7 +170,10 @@ const Component = class {
 Component.prototype.emitter = {};
 Component.prototype.trigger = function (name, ...args) {
   if (!!Component.prototype.emitter[name] === false) return;
-  Component.prototype.emitter[name].forEach((func) => {
+  // "sliced method" allow shallow copy to avoid array modification in iteration 
+  //-> unsubscribe in the triggered func would change the array length during iteration 
+  //-> potential callback skipping 
+  Component.prototype.emitter[name].slice().forEach((func) => {
     func(...args);
   });
 };
