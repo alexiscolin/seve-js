@@ -79,7 +79,7 @@ const Component = class {
       const component = this.components.get(comp).get(id);
       if (component?.[func]) {
         args = Array.isArray(args) ? args : [args];
-        component[func](...args);
+        return component[func](...args);
       }
     }
   }
@@ -170,9 +170,9 @@ const Component = class {
 Component.prototype.emitter = {};
 Component.prototype.trigger = function (name, ...args) {
   if (!!Component.prototype.emitter[name] === false) return;
-  // "sliced method" allow shallow copy to avoid array modification in iteration 
-  //-> unsubscribe in the triggered func would change the array length during iteration 
-  //-> potential callback skipping 
+  // "sliced method" allow shallow copy to avoid array modification in iteration
+  //-> unsubscribe in the triggered func would change the array length during iteration
+  //-> potential callback skipping
   Component.prototype.emitter[name].slice().forEach((func) => {
     func(...args);
   });
@@ -193,4 +193,4 @@ Component.prototype.unsubscribe = function (name, func) {
   funcs.splice(funcIndex);
 };
 
-export default Component
+export default Component;
